@@ -1,0 +1,118 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Quicksand:wght@300;400;500;600&display=swap');
+
+/* Background */
+body,
+.MuiBox-root,
+main {
+    background: linear-gradient(135deg, #fff0f5 0%, #ffe4e1 100%) !important;
+}
+
+/* Fix excessive top spacing */
+#root > div > div:first-child {
+    padding-top: 0px !important;
+    margin-top: 0px !important;
+}
+
+/* Chat area */
+.MuiPaper-root,
+.MuiBox-root[class*="chat"] {
+    background-color: #ffffff !important;
+    box-shadow: none !important;
+    border: none !important;
+}
+
+/* Hero */
+.hero {
+    text-align: center;
+    padding: 8px 20px 18px 20px !important;
+    margin-top: -10px !important;
+}
+
+.hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 3.6rem;
+    font-weight: 700;
+    font-style: italic;
+    color: #f48fb1;
+    margin-bottom: 6px;
+    letter-spacing: -1px;
+}
+
+.hero-subtitle {
+    font-family: 'Quicksand', sans-serif;
+    font-size: 1.08rem;
+    color: #8a7b8e;
+    font-weight: 500;
+}
+
+/* Cards */
+.variant-grid {
+    display: flex;
+    flex-wrap: nowrap !important;
+    justify-content: center;
+    gap: 22px;
+    padding: 8px 20px;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.variant-card {
+    width: 210px !important;
+    background: rgba(255,255,255,0.92) !important;
+    border-radius: 24px !important;
+    padding: 15px !important;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(220, 190, 200, 0.28) !important;
+    backdrop-filter: blur(10px);
+}
+
+.card-image {
+    width: 100% !important;
+    height: 110px !important;
+    object-fit: cover !important;
+    border-radius: 14px !important;
+    margin-bottom: 12px !important;
+}
+
+/* Card text */
+.variant-name {
+    font-family: 'Playfair Display', serif !important;
+    font-size: 1.35rem !important;
+    font-weight: 600 !important;
+    color: #e48ab0 !important;
+    margin-bottom: 6px !important;
+}
+
+.variant-desc {
+    font-family: 'Quicksand', sans-serif !important;
+    font-size: 0.92rem !important;
+    line-height: 1.55 !important;
+    color: #7d707d !important;
+    font-weight: 500 !important;
+}
+
+/* Chat input */
+.MuiInputBase-root {
+    background: rgba(255,255,255,0.95) !important;
+    border: 2px solid #f8bbd0 !important;
+    border-radius: 30px !important;
+    font-family: 'Quicksand', sans-serif !important;
+    font-size: 1rem !important;
+    padding-left: 10px !important;
+    box-shadow: 0 6px 18px rgba(244, 143, 177, 0.12) !important;
+}
+
+/* Placeholder text */
+.MuiInputBase-input::placeholder {
+    color: #b89aaa !important;
+    opacity: 1 !important;
+    font-family: 'Quicksand', sans-serif !important;
+}
+
+/* 🎀 The Beautiful Pink Outline Chat Box */
+.MuiInputBase-root {
+    background: #ffffff !important;
+    border-radius: 30px !important;
+    border: 2px solid #f8bbd0 !important;
+    box-shadow: 0 4px 15px rgba(248, 187, 208, 0.4) !important;
+}
