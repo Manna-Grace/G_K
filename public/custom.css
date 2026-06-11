@@ -35,9 +35,14 @@ main {
     font-size: 3.6rem;
     font-weight: 700;
     font-style: italic;
-    color: #f48fb1;
     margin-bottom: 6px;
     letter-spacing: -1px;
+    /* ✨ Magical Pink Aesthetic Gradient ✨ */
+    background: linear-gradient(to right, #ff758c 0%, #ff7eb3 50%, #f48fb1 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent;
 }
 
 .hero-subtitle {
@@ -125,13 +130,13 @@ div[id^="message-"],
     box-shadow: none !important;
 }
 
-/* 2. Apply the white bubble STRICTLY to the USER messages only */
-.message-row[data-author="User"] .message-content,
-.message-row[data-author="user"] .message-content {
+/* 2. Apply the white bubble STRICTLY to the USER messages only inside the chat history */
+div[id^="step-"] .bg-accent {
     background-color: #ffffff !important;
+    background: #ffffff !important;
     border-radius: 18px !important;
     padding: 10px 18px !important;
-    width: fit-content !important; /* This fixes the vertical 'hi' squishing */
+    width: fit-content !important; 
     max-width: 85% !important;
     box-shadow: 0 6px 20px rgba(220, 190, 200, 0.15) !important;
 }
@@ -147,9 +152,13 @@ div[id^="message-"],
     font-weight: 500 !important;
 }
 
-/* ----------------------------------------------------
-   📖 TEXTBOOK LAYOUT FIXES
------------------------------------------------------- */
+/* Keeps your text the elegant mauve color inside the user bubble */
+div[id^="step-"] .bg-accent .message-content,
+div[id^="step-"] .bg-accent div[role="article"],
+div[id^="step-"] .bg-accent {
+    color: #8a7b8e !important; 
+}
+
 
 /* 1. Prevent the scroll button from covering the bottom text */
 .message-row:last-of-type {

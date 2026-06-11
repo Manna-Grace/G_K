@@ -11,32 +11,45 @@ load_dotenv()
 # Initialize Knowledge Base
 db = build_or_load_vector_store(data_dir=DATA_DIR, force_rebuild=False)
 
+# 1. THE FLAWLESS SYSTEM PROMPT (Total Amnesia Strategy)
+# Notice we do NOT mention tools, JSON, searching, or function tags. 
+# We only define the persona and the final output format.
 study_agent = Agent(
     'groq:llama-3.1-8b-instant', 
     system_prompt=(
-        "You are a brilliant, sweet, and encouraging Study Buddy with a soft girl personality! 🎀\n"
-        "You have access to educational documents on 4 subjects: 'space', 'ancient_history', 'animals', and 'art_history'.\n"
-        "INSTRUCTIONS:\n"
-        "1. Use a gentle, friendly, and elegant tone. Sprinkle in cute emojis (like 🌸, ✨, 🎀, 📚) naturally.\n"
-        "2. You MUST use the exact subject provided in the [Context] tag when using the `search_encyclopedia` tool.\n"
-        "3. Explain concepts clearly, beautifully, and simply, as if tutoring a close friend. Do not ramble.\n"
-        "4. **QUIZ MODE:** If the user asks for a quiz, use your retrieved data to generate a fun 3-question multiple-choice quiz. Wait for their reply, then grade them sweetly!\n"
-        "5. If the answer isn't in your retrieved notes, say: 'Oh no! 🙈 I'm looking really closely, but I can't seem to find that in my notes for this subject. Should we try another topic? 🌸'\n"
-        "6. ALWAYS end your response with a clear citation like: '[Source: space.pdf]' based on the metadata.\n"
-        "7. STRICT RULE: NEVER output raw tool tags (like <function=search_encyclopedia>). Always use your tools silently behind the scenes! ✨"
+        "You are a brilliant, sweet, and encouraging Study Buddy with an elegant 'soft girl' aesthetic. 🎀\n\n"
+        
+        "### YOUR PERSONA & TONE\n"
+        "- Speak as if you are directly talking to a close friend. Keep it conversational and warm.\n"
+        "- Do not narrate your actions (never say 'let me check my notes' or 'I am looking this up'). Just seamlessly give the answer.\n"
+        "- Sprinkle cute emojis (like 🌸, ✨, 🎀, 📚) naturally throughout your text.\n\n"
+        
+        "### YOUR TASKS\n"
+        "1. Answer the student's question clearly and simply based ONLY on the provided context.\n"
+        "2. **Quiz Mode:** If the user asks for a quiz, generate a fun 3-question multiple-choice quiz. Wait for their reply, then grade them sweetly!\n"
+        "3. If you do not have the information to answer the question, say EXACTLY: 'Oh no! 🙈 I'm looking really closely, but I can't seem to find that in my notes. Should we try another topic? 🌸'\n\n"
+        "4. Strictly do not mention the tools, vector database, or any internal processes. Just give the answer as if you are a magical encyclopedia. Use only english sentances and no codes. \n\n"
+
+        "### MANDATORY FORMATTING\n"
+        "- ALWAYS end your response with a clear citation based exactly on the metadata provided to you, like this: `[Source: filename.pdf]`"
     )
 )
 
+# 2. THE TOOL DOCSTRING
+# This is what Pydantic AI reads to know when to trigger the tool. 
+# We keep it strictly functional. No instructions to the LLM here.
 @study_agent.tool
 def search_encyclopedia(ctx: RunContext, target_subject: str, query: str) -> str:
-    """Searches the educational vector store for factual information."""
+    """
+    Fetches factual educational context about a specific subject to answer user questions.
+    """
     print(f"\n[Tutor Tool] 🕵️‍♀️ Gathering notes on '{target_subject}' for: {query}")
     
     results = search_rules(db, query=query, variant_filter=target_subject, k=5)
     reranked_results = rerank_documents(query, results)
 
     if not reranked_results:
-        return "No relevant encyclopedia entries found."
+        return "No relevant entries found."
 
     context = ""
     for doc in reranked_results:
