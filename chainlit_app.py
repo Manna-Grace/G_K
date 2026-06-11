@@ -1,10 +1,9 @@
 import chainlit as cl
 from core.agent import ask_study_buddy
 
-# 🖼️ We are using high-quality aesthetic Unsplash URLs for the images!
 WELCOME_MESSAGE = """
 <div class="hero">
-    <div class="hero-title">Study Oasis 🌸</div>
+    <div class="hero-title">Miss Babygirl 🌸</div>
     <div class="hero-subtitle">Your elegant, magical guide to learning beautifully.</div>
 </div>
 
@@ -39,7 +38,6 @@ async def start():
 
     await cl.Message(content=WELCOME_MESSAGE).send()
 
-    # We keep the buttons simple and elegant below the beautiful grid
     await cl.Message(
         content="Choose a subject to set our focus before we begin our lesson:",
         actions=[

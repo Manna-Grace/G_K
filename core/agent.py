@@ -8,12 +8,9 @@ from core.config import DATA_DIR
 
 load_dotenv()
 
-# Initialize Knowledge Base
 db = build_or_load_vector_store(data_dir=DATA_DIR, force_rebuild=False)
 
-# 1. THE FLAWLESS SYSTEM PROMPT (Total Amnesia Strategy)
-# Notice we do NOT mention tools, JSON, searching, or function tags. 
-# We only define the persona and the final output format.
+# 1. SYSTEM PROMPT
 study_agent = Agent(
     'groq:llama-3.1-8b-instant', 
     system_prompt=(
@@ -35,9 +32,7 @@ study_agent = Agent(
     )
 )
 
-# 2. THE TOOL DOCSTRING
-# This is what Pydantic AI reads to know when to trigger the tool. 
-# We keep it strictly functional. No instructions to the LLM here.
+# 2. TOOL DOCSTRING
 @study_agent.tool
 def search_encyclopedia(ctx: RunContext, target_subject: str, query: str) -> str:
     """

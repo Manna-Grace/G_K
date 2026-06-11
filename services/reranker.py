@@ -1,6 +1,6 @@
 from sentence_transformers import CrossEncoder
 
-# Initialize encoder once
+# Initialize encoder 
 try:
     reranker_model = CrossEncoder("cross-encoder/ms-marco-MiniLM-L6-v2")
 except Exception:

@@ -4,16 +4,15 @@
 body,
 .MuiBox-root,
 main {
-    background: linear-gradient(135deg, #fff0f5 0%, #ffe4e1 100%) !important;
+    background: linear-gradient(135deg, #fff0f5 0%, #ffe9ef 100%) !important;
 }
 
-/* Fix excessive top spacing */
+
 #root > div > div:first-child {
     padding-top: 0px !important;
     margin-top: 0px !important;
 }
 
-/* Master chat containers set to completely transparent */
 .MuiPaper-root,
 .MuiBox-root[class*="chat"],
 #root > div > div:last-child {
@@ -37,7 +36,7 @@ main {
     font-style: italic;
     margin-bottom: 6px;
     letter-spacing: -1px;
-    /* ✨ Magical Pink Aesthetic Gradient ✨ */
+
     background: linear-gradient(to right, #ff758c 0%, #ff7eb3 50%, #f48fb1 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -116,9 +115,6 @@ main {
 }
 
 
-/* 💬 STRIKTLY ONLY THE USER CHAT BUBBLES 💬 */
-
-/* 1. Strip the background from ALL messages (This fixes the AI and Welcome Message) */
 div[id^="step-"], 
 div[id^="message-"],
 .message-row,
@@ -130,7 +126,7 @@ div[id^="message-"],
     box-shadow: none !important;
 }
 
-/* 2. Apply the white bubble STRICTLY to the USER messages only inside the chat history */
+
 div[id^="step-"] .bg-accent {
     background-color: #ffffff !important;
     background: #ffffff !important;
@@ -141,7 +137,7 @@ div[id^="step-"] .bg-accent {
     box-shadow: 0 6px 20px rgba(220, 190, 200, 0.15) !important;
 }
 
-/* 3. Soft Mauve Text Color for all chat text */
+
 .message-content, 
 .message-content p, 
 .step-content, 
@@ -152,7 +148,7 @@ div[id^="step-"] .bg-accent {
     font-weight: 500 !important;
 }
 
-/* Keeps your text the elegant mauve color inside the user bubble */
+
 div[id^="step-"] .bg-accent .message-content,
 div[id^="step-"] .bg-accent div[role="article"],
 div[id^="step-"] .bg-accent {
@@ -160,18 +156,15 @@ div[id^="step-"] .bg-accent {
 }
 
 
-/* 1. Prevent the scroll button from covering the bottom text */
 .message-row:last-of-type {
     margin-bottom: 60px !important;
 }
 
-/* 2. Constrain the AI's floating text width for elegant reading */
 .message-row:not([data-author="User"]):not([data-author="user"]) .message-content {
-    max-width: 850px !important; /* Prevents text from stretching across the whole screen */
-    line-height: 1.7 !important; /* Adds beautiful breathing room between lines of text */
+    max-width: 850px !important; 
+    line-height: 1.7 !important; 
 }
 
-/* 3. Make bullet points look slightly more elegant */
 .message-content ul, .step-content ul {
     padding-left: 20px !important;
     margin-top: 10px !important;
@@ -185,5 +178,5 @@ div[id^="step-"] .bg-accent {
 .message-row[data-author="user"] .message-content {
     background-color: #ffffff !important;
     border-radius: 18px !important;
-    color: #8a7b8e !important; /* Keeps your text the elegant mauve color */
+    color: #8a7b8e !important; 
 }
